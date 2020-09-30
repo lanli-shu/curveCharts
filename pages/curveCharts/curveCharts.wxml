@@ -1,0 +1,32 @@
+<!--pages/curveCharts/curveCharts.wxml-->
+<!--pages/experience/tests/tests.wxml-->
+<view class="efficacy">
+	<!-- 曲线 -->
+	<view class="chartsBox">
+		<view style="display:flex;justify-content: space-between;">
+			<view class="efficacyName" style="color:{{curve.lineColor}}">{{curve.name}}
+				<view style="background:{{curve.lineColor}}"></view>
+			</view>
+		</view>
+		<view class="canvasBox">
+			<scroll-view class="temp_day_box" scroll-x bindscroll='scrollCanvas'>
+				<canvas canvas-id='curveCanvas' id='curveCanvas' class='curveCanvas'> </canvas>
+				<canvas canvas-id='lines' id='lines'  class='lines'> </canvas>
+				<view class="xCoordinate" bindtap="getZuoBiao" >
+					<view class="xCoordinateTime{{index}} xCoordinateTime" wx:for="{{curve.date}}" wx:key="index" data-index="{{index}}" >
+          {{item}}
+    <!-- 分数提示线 -->
+						<cover-view class="scoreTip" wx-if="{{numShiow&&index==tipIndex}}">
+							<cover-view class="scoreBg" style="height:{{144}}px;">
+								<cover-view class="score" style="top:-{{180-tipHeight}}px;color:{{curve.lineColor}}">{{score}}</cover-view>
+								<cover-view class="scoreBox" style="top:-{{174-tipHeight}}px;background:{{curve.lineColor}}"></cover-view>
+							</cover-view>
+							<cover-view class="scoreLine" style="height:{{190-tipHeight}}px;background:{{curve.lineColor}}"></cover-view>
+						</cover-view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+	
+	</view>
+</view>
